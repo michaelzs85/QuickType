@@ -14,6 +14,19 @@ struct Convert
     static T1 convertTo(T2 t) {return to(t);}
 };
 
+template<typename T1, typename T2, T2 (*f)(T1), T1 (*g)(T1)>
+struct composeFrom
+{
+    static T2 func(T1 t) {return f(g(t));}
+};
+
+template<typename T1, typename T2, T1 (*f)(T1), T1 (*g)(T2)>
+struct composeTo
+{
+    static T1 func(T2 t) {return f(g(t));}
+};
+
+
 template<typename T1, typename T2, typename Ratio>
 struct ConvertWithRatio
 {
@@ -25,6 +38,7 @@ struct ConvertWithRatio
 template<typename T, class Tag, class Converter, template<typename> class... Skills >
 struct NamedTypeImpl : public Skills<NamedTypeImpl<T, Tag, Converter, Skills...>>... , Converter
 {
+  NamedTypeImpl() = delete;
   explicit NamedTypeImpl(T val_) : val(val_) {}
   T val;
 
@@ -36,20 +50,8 @@ struct NamedTypeImpl : public Skills<NamedTypeImpl<T, Tag, Converter, Skills...>
 
   struct conversions
   {
-    template<typename T2, T2 (*f)(T), T (*g)(T)>
-    struct composeFrom
-    {
-        static T2 func(T t) {return f(g(t));}
-    };
-
-    template<typename T2, T (*f)(T), T (*g)(T2)>
-    struct composeTo
-    {
-        static T func(T2 t) {return f(g(t));}
-    };
-
     template<typename T2, class Converter1, class Converter2>
-    using ComposeConverter = Convert<T, T2, composeFrom<T2, Converter2::convertFrom, Converter1::convertFrom>::func, composeTo<T2, Converter1::convertTo, Converter2::convertTo>::func>;
+    using ComposeConverter = Convert<T, T2, composeFrom<T, T2, Converter2::convertFrom, Converter1::convertFrom>::func, composeTo<T, T2, Converter1::convertTo, Converter2::convertTo>::func>;
 
     template<typename T2, class Converter2>
     using GetConvertible = NamedTypeImpl<T2, Tag, ComposeConverter<T2, Converter, Converter2>, Skills...>;
