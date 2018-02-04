@@ -4,6 +4,7 @@
 #include "skills.h"
 #include "operators.h"
 #include "operators_withconvert.h"
+#include "operators_witharithmetictypes.h"
 #include <type_traits>
 #include <ratio>
 
@@ -48,6 +49,11 @@ struct NamedTypeImpl : public Skills<NamedTypeImpl<T, Tag, Converter, Skills...>
     return NamedTypeImpl<T2, Tag, Converter2, Skills...>{Converter2::convertFrom(Converter::convertTo(val))};
   }
 
+//  operator T() const
+//  {
+//    return val;
+//  }
+
   struct conversions
   {
     template<typename T2, class Converter1, class Converter2>
@@ -65,10 +71,24 @@ using NamedType = NamedTypeImpl<T, Tag, ConvertWithRatio<T, T, std::ratio<1>>, S
 template<class NamedType, typename T2, class Ratio>
 using MultipleOf2 = typename NamedType::conversions::template GetConvertible<T2, ConvertWithRatio<T2, decltype(NamedType::val), Ratio>>;
 
-//template<class NamedType, class Converter>
-//using ConvertibleTo = typename NamedType::conversions::template GetConvertible<decltptype(NamedType::val),Converter>;
+template<class NamedType>
+struct Hashable {};
 
+namespace std {
 
+template<typename T, class Tag, class Converter, template<typename> class... Skills >
+struct hash<NamedTypeImpl<T, Tag, Converter, Skills...>>
+{
+    using NamedType = NamedTypeImpl<T, Tag, ConvertWithRatio<T, T, std::ratio<1>>, Skills...>;
+    using IsHashable = typename std::enable_if<std::is_base_of<Hashable<Tag>, NamedType>::value, std::true_type>::type;
+
+    size_t operator()(NamedType const& t) const noexcept
+    {
+      return std::hash<decltype(t.val)>()(t.val);
+    }
+};
+
+}
 
 
 #endif // NAMEDTYPE_H

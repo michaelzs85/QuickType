@@ -125,4 +125,93 @@ struct GreaterThanOrEqualTo {};
 template<class NamedType>
 struct Printable {};
 
+// Functions with aritmetic types
+
+template<class NamedType>
+struct AdditionWithArith {};
+
+template<class NamedType>
+struct SubtractionWithArith {};
+
+template<class NamedType>
+struct MultiplicationWithArith {};
+
+template<class NamedType>
+struct DivisionWithArith {};
+
+template<class NamedType>
+struct ModuloWithArith {};
+
+template<class NamedType>
+struct BitwiseAndWithArith {};
+
+template<class NamedType>
+struct BitwiseOrWithArith {};
+
+template<class NamedType>
+struct BitwiseXorWithArith {};
+
+template<class NamedType>
+struct BitwiseLeftShiftWithArith {};
+
+template<class NamedType>
+struct BitwiseRightShiftWithArith {};
+
+template<class NamedType>
+struct AdditionAssignmentWithArith {};
+
+template<class NamedType>
+struct SubtractionAssignmentWithArith {};
+
+template<class NamedType>
+struct MultiplicationAssignmentWithArith {};
+
+template<class NamedType>
+struct DivisionAssignmentWithArith {};
+
+template<class NamedType>
+struct ModuloAssignmentWithArith {};
+
+template<class NamedType>
+struct BitwiseAndAssignmentWithArith {};
+
+template<class NamedType>
+struct BitwiseOrAssignmentWithArith {};
+
+template<class NamedType>
+struct BitwiseXorAssignmentWithArith {};
+
+template<class NamedType>
+struct BitwiseLeftShiftAssignmentWithArith {};
+
+template<class NamedType>
+struct BitwiseRightShiftAssignmentWithArith {};
+
+template<class NamedType>
+struct AndWithArith {};
+
+template<class NamedType>
+struct InclusiveOrWithArith {};
+
+template<class NamedType>
+struct EqualToWithArith {};
+
+template<class NamedType>
+struct NotEqualToWithArith {};
+
+template<class NamedType>
+struct LessThanWithArith {};
+
+template<class NamedType>
+struct GreaterThanWithArith {};
+
+template<class NamedType>
+struct LessThanOrEqualToWithArith {};
+
+template<class NamedType>
+struct GreaterThanOrEqualToWithArith {};
+
+// hash
+
+
 #endif // SKILLS_H

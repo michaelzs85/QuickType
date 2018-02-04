@@ -2,12 +2,9 @@
 #define OPERATORS_WITHCONVERT_H
 
 #include "skills.h"
+#include "conjunction.h"
+#include <type_traits>
 #include <iostream>
-
-template<class...> struct conjunction : std::true_type { };
-template<class B1> struct conjunction<B1> : B1 { };
-template<class B1, class... Bn>
-struct conjunction<B1, Bn...> : std::conditional<bool(B1::value), conjunction<Bn...>, B1>::type {};
 
 // Arithmetic operators
 
