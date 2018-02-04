@@ -120,4 +120,9 @@ struct LessThanOrEqualTo {};
 template<class NamedType>
 struct GreaterThanOrEqualTo {};
 
+// other
+
+template<class NamedType>
+struct Printable {};
+
 #endif // SKILLS_H

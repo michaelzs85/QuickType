@@ -2,7 +2,7 @@
 #define OPERATORS_H
 
 #include "skills.h"
-#include "namedtype.h"
+#include <iostream>
 
 // Arithmetic operators
 
@@ -15,7 +15,7 @@ operator+ (const NamedType& rhs)
 
 template<class NamedType>
 typename std::enable_if<std::is_base_of<UnaryMinus<NamedType>, NamedType>::value, NamedType>::type
-operator+ (const NamedType& rhs)
+operator- (const NamedType& rhs)
 {
   return NamedType{-rhs.val};
 }
@@ -280,6 +280,15 @@ typename std::enable_if<std::is_base_of<GreaterThanOrEqualTo<NamedType>, NamedTy
 operator>= (const NamedType& lhs, const NamedType& rhs)
 {
     return (lhs.val >= rhs.val);
+}
+
+// Other operators
+
+template<class NamedType>
+typename std::enable_if<std::is_base_of<Printable<NamedType>, NamedType>::value, std::ostream&>::type
+operator<< (std::ostream& os, const NamedType& a)
+{
+    return os << a.val;
 }
 
 #endif // OPERATORS_H

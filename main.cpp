@@ -2,11 +2,13 @@
 #include <iostream>
 #include <ratio>
 
-using Meters = NamedType<double,struct MetersTag, Addition, Subtraction>;
-//using Kilometers = MultipleOf2<Meters, double, std::kilo>;
-using Kilometers = MultipleOf<Meters, std::kilo>;
+using Meters = NamedType<int,struct MetersTag, Addition, Subtraction, Printable>;
+using Kilometers = MultipleOf2<Meters, double, std::kilo>;
 
-using Feet = NamedType<double, struct FeetTag, Addition, Subtraction>;
+using Feet = MultipleOf2<Meters, int, std::ratio<1000000000000, 3280833333334>>;
+
+
+
 
 void printKm(Kilometers l)
 {
@@ -17,15 +19,15 @@ void printKm(Kilometers l)
 
 int main()
 {
-    //Meters l1{8};
-    //Meters l2{154};
-    Kilometers l4(1.5);
-    Meters l3(2305);
-
-    Feet f(14);
-
-    printKm(l4);
-    printKm(l3);
+    Feet f1(1289);
+    Meters l1(134);
+    std::cout << "l1: " << l1 << "m\n";
+    Kilometers l2(l1);
+    std::cout << "l2: " << l2 << "m\n";
+    std::cout << "l2+f1: " << l2+f1 << "Km\n";
+    std::cout << "l2-f1: " << l2-f1 << "Km\n";
+    //printKm(l4);
+    //printKm(l3);
     return 0;
 }
 
