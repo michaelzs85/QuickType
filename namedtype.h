@@ -35,11 +35,10 @@ struct ConvertWithRatio
     static T2 convertTo(T1 t) {return static_cast<T2>(t * Ratio::num / Ratio::den);}
 };
 
-
-template<typename T, class Tag, class Converter, template<typename> class... Skills >
-struct NamedTypeImpl : public Skills<NamedTypeImpl<T, Tag, Converter, Skills...>>... , Converter
+template<typename T, class Tag, class Converter, class... Skills>
+struct NamedTypeImpl : public Skills... , Converter
 {
-  NamedTypeImpl() = delete;
+  NamedTypeImpl(): val({}) {}
   explicit NamedTypeImpl(T val_) : val(val_) {}
   T val;
 
@@ -64,23 +63,13 @@ struct NamedTypeImpl : public Skills<NamedTypeImpl<T, Tag, Converter, Skills...>
   };
 };
 
-
-template<typename T, class Tag, template<typename> class... Skills >
-using NamedType = NamedTypeImpl<T, Tag, ConvertWithRatio<T, T, std::ratio<1>>, Skills...>;
-
-template<class NamedType, typename T2, class Ratio>
-using MultipleOf2 = typename NamedType::conversions::template GetConvertible<T2, ConvertWithRatio<T2, decltype(NamedType::val), Ratio>>;
-
-template<class NamedType>
-struct Hashable {};
-
 namespace std {
 
-template<typename T, class Tag, class Converter, template<typename> class... Skills >
+template<typename T, class Tag, class Converter, class... Skills >
 struct hash<NamedTypeImpl<T, Tag, Converter, Skills...>>
 {
     using NamedType = NamedTypeImpl<T, Tag, ConvertWithRatio<T, T, std::ratio<1>>, Skills...>;
-    using IsHashable = typename std::enable_if<std::is_base_of<Hashable<Tag>, NamedType>::value, std::true_type>::type;
+    using IsHashable = typename std::enable_if<std::is_base_of<Hashable, NamedType>::value, std::true_type>::type;
 
     size_t operator()(NamedType const& t) const noexcept
     {
@@ -90,5 +79,10 @@ struct hash<NamedTypeImpl<T, Tag, Converter, Skills...>>
 
 }
 
+template<typename T, class Tag, class... Skills >
+using NamedType = NamedTypeImpl<T, Tag, ConvertWithRatio<T, T, std::ratio<1>>, Skills...>;
+
+template<class NamedType, typename T2, class Ratio>
+using MultipleOf2 = typename NamedType::conversions::template GetConvertible<T2, ConvertWithRatio<T2, decltype(NamedType::val), Ratio>>;
 
 #endif // NAMEDTYPE_H
