@@ -1,10 +1,6 @@
 #include "namedtype.h"
-#include <iostream>
-#include <ratio>
-#include <vector>
 #include <gtest/gtest.h>
 
-using MyType = NamedType<int, struct MyTag, Addition>;
 namespace  {
 
 TEST(OperatorTest, ArithmeticOperators)
