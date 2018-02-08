@@ -1,4 +1,4 @@
-#include "strong_type.h"
+#include "quick_type.h"
 #include <gtest/gtest.h>
 #include <ratio>
 

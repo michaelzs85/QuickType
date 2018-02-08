@@ -5,16 +5,16 @@ SET( CMAKE_CXX_FLAGS "-O2 -Wall -std=c++14" )
 
 project(strong)
 
-SET(headers "strong_type.h" "namedtype.h" "skills.h" "operators.h" "operators_withconvert.h" "operators_witharithmetictypes.h" "conjunction.h")
+if(EXISTS unittests)
+  add_subdirectory(unittests)
+endif(EXISTS unittests)
 
-add_executable(${PROJECT_NAME}_benchmark benchmark.cpp ${headers})
-target_link_libraries(${PROJECT_NAME}_benchmark benchmark pthread)
+if(EXISTS benchmark)
+  add_subdirectory(benchmark)
+endif(EXISTS benchmark)
 
-add_executable(operators_unittest "operators_unittest.cpp" ${headers})
-target_link_libraries(operators_unittest gtest pthread)
+SET(headers "quick_type/strong_type.h" "quick_type/namedtype.h" "quick_type/skills.h" "quick_type/operators.h" "quick_type/operators_withconvert.h" "quick_type/operators_witharithmetictypes.h" "quick_type/conjunction.h")
 
-add_executable(operators_withconvert_unittest "operators_withconvert_unittest.cpp" ${headers})
-target_link_libraries(operators_withconvert_unittest gtest pthread)
 
-add_executable(operators_witharithmetictypes_unittest "operators_witharithmetictypes_unittest.cpp" ${headers})
-target_link_libraries(operators_witharithmetictypes_unittest gtest pthread)
+
+
