@@ -1,5 +1,5 @@
 language: c++
-script: cd michaelzs85 & mkdir build & cd build & cmake ../QuickType & make
+script: cd .. & mkdir build & cd build & cmake ../QuickType & make
 compiler:
  - gcc
  - clang
