@@ -10,8 +10,11 @@ SET(headers "strong_type.h" "namedtype.h" "skills.h" "operators.h" "operators_wi
 add_executable(${PROJECT_NAME}_benchmark benchmark.cpp ${headers})
 target_link_libraries(${PROJECT_NAME}_benchmark benchmark pthread)
 
-add_executable(${PROJECT_NAME}_unittest "strong_type_unittest.cpp" ${headers})
-target_link_libraries(${PROJECT_NAME}_unittest gtest pthread)
+add_executable(operators_unittest "operators_unittest.cpp" ${headers})
+target_link_libraries(operators_unittest gtest pthread)
 
-add_executable(${PROJECT_NAME}_convert_unittest "strong_type_convert_unittest.cpp" ${headers})
-target_link_libraries(${PROJECT_NAME}_convert_unittest gtest pthread)
+add_executable(operators_withconvert_unittest "operators_withconvert_unittest.cpp" ${headers})
+target_link_libraries(operators_withconvert_unittest gtest pthread)
+
+add_executable(operators_witharithmetictypes_unittest "operators_witharithmetictypes_unittest.cpp" ${headers})
+target_link_libraries(operators_witharithmetictypes_unittest gtest pthread)

@@ -66,7 +66,7 @@ operator^ (const NamedType& lhs, const T& rhs)
 }
 
 template<class NamedType, typename T>
-typename std::enable_if<conjunction<std::is_base_of<BitwiseLeftShift, NamedType>, std::is_arithmetic<T>>::value, NamedType>::type
+typename std::enable_if<conjunction<std::is_base_of<BitwiseLeftShiftWithArith, NamedType>, std::is_arithmetic<T>>::value, NamedType>::type
 operator<< (const NamedType& lhs, const T& rhs)
 {
   return NamedType{lhs.val << rhs};
@@ -123,7 +123,7 @@ operator%= (NamedType& lhs, const T& rhs)
 
 template<class NamedType, typename T>
 typename std::enable_if<conjunction<std::is_base_of<BitwiseAndAssignmentWithArith, NamedType>, std::is_arithmetic<T>>::value, NamedType&>::type
-operator+= (NamedType& lhs, const T& rhs)
+operator&= (NamedType& lhs, const T& rhs)
 {
     lhs.val &= rhs;
     return lhs;
