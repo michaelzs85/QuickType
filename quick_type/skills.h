@@ -1,6 +1,7 @@
 #ifndef SKILLS_H
 #define SKILLS_H
 
+// clang-format off
 
 // arithmetic
 
@@ -91,5 +92,7 @@ struct GreaterThanOrEqualToWithArith {};
 // hash
 
 struct Hashable {};
+
+// clang-format on
 
 #endif // SKILLS_H

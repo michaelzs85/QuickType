@@ -1,44 +1,45 @@
 #include "quick_type.h"
 #include <gtest/gtest.h>
 
-namespace  {
+namespace
+{
 
 TEST(OperatorTest, ArithmeticOperators)
 {
-    int a = 3857;
-    int b = 10348;
+    int a            = 3857;
+    int b            = 10348;
     using UnaryPlusT = NamedType<int, struct UPT, UnaryPlus>;
     ASSERT_EQ(+a, +UnaryPlusT{a}.val);
     using UnaryMinusT = NamedType<int, struct UPT, UnaryMinus>;
     ASSERT_EQ(-b, -UnaryMinusT{b}.val);
     using AdditionT = NamedType<int, struct UPT, Addition>;
-    ASSERT_EQ(a+b, (AdditionT{a}+AdditionT{b}).val);
+    ASSERT_EQ(a + b, (AdditionT{a} + AdditionT{b}).val);
     using SubtractionT = NamedType<int, struct UPT, Subtraction>;
-    ASSERT_EQ(a-b, (SubtractionT{a}-SubtractionT{b}).val);
+    ASSERT_EQ(a - b, (SubtractionT{a} - SubtractionT{b}).val);
     using MultiplicationT = NamedType<int, struct UPT, Multiplication>;
-    ASSERT_EQ(a*b, (MultiplicationT{a}*MultiplicationT{b}).val);
+    ASSERT_EQ(a * b, (MultiplicationT{a} * MultiplicationT{b}).val);
     using DivisionT = NamedType<int, struct UPT, Division>;
-    ASSERT_EQ(a/b, (DivisionT{a}/DivisionT{b}).val);
+    ASSERT_EQ(a / b, (DivisionT{a} / DivisionT{b}).val);
     using ModuloT = NamedType<int, struct UPT, Modulo>;
-    ASSERT_EQ(a%b, (ModuloT{a}%ModuloT{b}).val);
+    ASSERT_EQ(a % b, (ModuloT{a} % ModuloT{b}).val);
     using BitwiseNotT = NamedType<int, struct UPT, BitwiseNot>;
     ASSERT_EQ(~b, ~BitwiseNotT{b}.val);
     using BitwiseAndT = NamedType<int, struct UPT, BitwiseAnd>;
-    ASSERT_EQ(a&b, (BitwiseAndT{a}&BitwiseAndT{b}).val);
+    ASSERT_EQ(a & b, (BitwiseAndT{a} & BitwiseAndT{b}).val);
     using BitwiseOrT = NamedType<int, struct UPT, BitwiseOr>;
-    ASSERT_EQ(a|b, (BitwiseOrT{a}|BitwiseOrT{b}).val);
+    ASSERT_EQ(a | b, (BitwiseOrT{a} | BitwiseOrT{b}).val);
     using BitwiseXorT = NamedType<int, struct UPT, BitwiseXor>;
-    ASSERT_EQ(a^b, (BitwiseXorT{a}^BitwiseXorT{b}).val);
+    ASSERT_EQ(a ^ b, (BitwiseXorT{a} ^ BitwiseXorT{b}).val);
     using BitwiseLeftShiftT = NamedType<int, struct UPT, BitwiseLeftShift>;
-    ASSERT_EQ(a<<3, (BitwiseLeftShiftT{a}<<BitwiseLeftShiftT{3}).val);
+    ASSERT_EQ(a << 3, (BitwiseLeftShiftT{a} << BitwiseLeftShiftT{3}).val);
     using BitwiseRightShiftT = NamedType<int, struct UPT, BitwiseRightShift>;
-    ASSERT_EQ(a>>3, (BitwiseRightShiftT{a}>>BitwiseRightShiftT{3}).val);
+    ASSERT_EQ(a >> 3, (BitwiseRightShiftT{a} >> BitwiseRightShiftT{3}).val);
 }
 
 TEST(OperatorTest, LogicalOperators)
 {
-    bool a = true;
-    bool b = false;
+    bool a          = true;
+    bool b          = false;
     using NegationT = NamedType<bool, struct Tag, Negation>;
     ASSERT_EQ(!b, !NegationT{b});
     using AndT = NamedType<bool, struct Tag, And>;
@@ -49,8 +50,8 @@ TEST(OperatorTest, LogicalOperators)
 
 TEST(OperatorTest, ComparisonOperators)
 {
-    int a = 23850;
-    int b = 14592;
+    int a          = 23850;
+    int b          = 14592;
     using EqualToT = NamedType<int, struct FDH, EqualTo>;
     ASSERT_EQ(a == b, EqualToT{a} == EqualToT{b});
     ASSERT_EQ(a == a, EqualToT{a} == EqualToT{a});
@@ -74,7 +75,7 @@ TEST(OperatorTest, ComparisonOperators)
 TEST(OperatorTest, IncrementDecrementOperators)
 {
     using Type = NamedType<int, struct TypeTag, PreIncrement, PreDecrement, PostIncrement, PostDecrement>;
-    int v = 35743943;
+    int  v     = 35743943;
     Type k{v};
     ++v;
     ++k;
@@ -92,7 +93,9 @@ TEST(OperatorTest, IncrementDecrementOperators)
 
 TEST(OperatorTest, AssignmentOperators)
 {
-    using Type = NamedType<int, struct TypeTag, AdditionAssignment, SubtractionAssignment, MultiplicationAssignment, DivisionAssignment, ModuloAssignment, BitwiseAndAssignment, BitwiseOrAssignment, BitwiseXorAssignment, BitwiseLeftShiftAssignment, BitwiseRightShiftAssignment>;
+    using Type =
+        NamedType<int, struct TypeTag, AdditionAssignment, SubtractionAssignment, MultiplicationAssignment, DivisionAssignment, ModuloAssignment,
+                  BitwiseAndAssignment, BitwiseOrAssignment, BitwiseXorAssignment, BitwiseLeftShiftAssignment, BitwiseRightShiftAssignment>;
     int k = 848;
     int l = 1234;
 
@@ -101,56 +104,53 @@ TEST(OperatorTest, AssignmentOperators)
 
     k = l;
     a = b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 
     k += l;
     a += b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 
     k -= l;
     a -= b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 
     k *= l;
     a *= b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 
     k /= l;
     a /= b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 
     k %= l;
     a %= b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 
     k &= l;
     a &= b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 
     k |= l;
     a |= b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 
     k ^= l;
     a ^= b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 
     k <<= l;
     a <<= b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 
     k >>= l;
     a >>= b;
-    ASSERT_EQ(k,a.val);
+    ASSERT_EQ(k, a.val);
 }
-
 
 } // namespace
 
-
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+int main(int argc, char **argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
-
-
