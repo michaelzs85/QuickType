@@ -2,8 +2,8 @@ language: c++
 
 install:
  - sudo apt-get install libgtest-dev
- - git clone https://github.com/google/benchmark.git
- - cd benchmark
+ - git clone https://github.com/google/benchmark.git gbench
+ - cd gbench
  - mkdir build
  - cd build
  - cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON
