@@ -1,5 +1,13 @@
 language: c++
 
+compiler:
+ - gcc
+ - clang
+
+group: stable
+os: linux
+dist: artful
+
 install:
  - pwd
  - CHECKOUTFOLDER=`pwd`
@@ -23,6 +31,3 @@ script:
  - cmake ../QuickType 
  - make
 
-compiler:
- - gcc
- - clang
