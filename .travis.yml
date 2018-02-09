@@ -4,14 +4,14 @@ compiler:
  - gcc
  - clang
 
-sudo: false
+sudo: required
 
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - g++7
+      - g++-7
 
 install:
  - pwd
