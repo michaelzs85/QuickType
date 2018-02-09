@@ -4,16 +4,20 @@ compiler:
  - gcc
  - clang
 
-group: stable
-os: linux
-dist: artful
+sudo: false
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++7
 
 install:
  - pwd
  - CHECKOUTFOLDER=`pwd`
  - cd
  - sudo apt-get install libgtest-dev
- - sudo apt-get install cmake-extras
  - git clone https://github.com/google/benchmark.git gbench
  - cd gbench
  - mkdir build
@@ -28,6 +32,6 @@ script:
  - cd ..
  - mkdir build
  - cd build
- - cmake ../QuickType 
- - make
+ - CXX=/usr/bin/g++-7 CC=/usr/bin/gcc-7 cmake ../QuickType 
+ - cmake --build . -- -j2
 
