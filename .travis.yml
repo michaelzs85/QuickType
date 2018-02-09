@@ -1,5 +1,23 @@
 language: c++
-script: cd .. && mkdir build && cd build && cmake ../QuickType && make
+
+install:
+ - sudo apt-get install libgtest-dev
+ - git clone https://github.com/google/benchmark.git
+ - cd benchmark
+ - mkdir build
+ - cd build
+ - cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON
+ - make 
+ - sudo make install
+ - cd
+
+script: 
+ - cd .. 
+ - mkdir build
+ - cd build
+ - cmake ../QuickType 
+ - make
+
 compiler:
  - gcc
  - clang

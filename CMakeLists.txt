@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
 
 SET( CMAKE_CXX_FLAGS "-O2 -Wall -std=c++14" )
 #SET( CMAKE_EXE_LINKER_FLAGS "--coverage")
@@ -6,8 +6,6 @@ SET( CMAKE_CXX_FLAGS "-O2 -Wall -std=c++14" )
 project(strong)
 add_subdirectory(unittests)
 add_subdirectory(benchmark)
-
-SET(headers "quick_type/strong_type.h" "quick_type/namedtype.h" "quick_type/skills.h" "quick_type/operators.h" "quick_type/operators_withconvert.h" "quick_type/operators_witharithmetictypes.h" "quick_type/conjunction.h")
 
 
 
