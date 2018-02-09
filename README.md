@@ -1,6 +1,7 @@
 # QuickType
-A C++ Library to support strong type safety. 
+[![Build Status](https://travis-ci.org/michaelzs85/QuickType.svg?branch=master)](https://travis-ci.org/michaelzs85/QuickType)
 
+A C++ Library to support strong type safety. 
 
 The idea is to quickly and easily create your own types. 
 
