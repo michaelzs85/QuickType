@@ -1,6 +1,8 @@
 language: c++
 
 install:
+ - pwd
+ - CHECKOUTFOLDER=`pwd`
  - cd
  - sudo apt-get install libgtest-dev
  - git clone https://github.com/google/benchmark.git gbench
@@ -13,7 +15,8 @@ install:
  - cd
 
 script: 
- - cd michaelzs85
+ - cd $CHECKOUTFOLDER
+ - cd ..
  - mkdir build
  - cd build
  - cmake ../QuickType 
