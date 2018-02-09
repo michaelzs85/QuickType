@@ -17,13 +17,20 @@ install:
  - pwd
  - CHECKOUTFOLDER=`pwd`
  - cd
- - sudo apt-get install libgtest-dev
+ - git clone https://github.com/google/googletest.git gtest
+ - cd gtest
+ - mkdir build
+ - cd build
+ - cmake ..
+ - cmake --build . -- -j2
+ - sudo make install
+ - cd 
  - git clone https://github.com/google/benchmark.git gbench
  - cd gbench
  - mkdir build
  - cd build
  - cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON
- - make 
+ - cmake --build . -- -j2
  - sudo make install
  - cd
 
