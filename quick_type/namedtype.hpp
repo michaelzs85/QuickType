@@ -1,10 +1,10 @@
 #ifndef NAMEDTYPE_H
 #define NAMEDTYPE_H
 
-#include "operators.h"
-#include "operators_witharithmetictypes.h"
-#include "operators_withconvert.h"
-#include "skills.h"
+#include "operators.hpp"
+#include "operators_witharithmetictypes.hpp"
+#include "operators_withconvert.hpp"
+#include "skills.hpp"
 #include <ratio>
 #include <type_traits>
 

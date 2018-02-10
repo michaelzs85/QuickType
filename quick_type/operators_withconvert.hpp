@@ -1,8 +1,8 @@
 #ifndef OPERATORS_WITHCONVERT_H
 #define OPERATORS_WITHCONVERT_H
 
-#include "conjunction.h"
-#include "skills.h"
+#include "conjunction.hpp"
+#include "skills.hpp"
 #include <iostream>
 #include <type_traits>
 

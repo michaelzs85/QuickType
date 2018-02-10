@@ -1,7 +1,7 @@
 #ifndef OPERATORS_H
 #define OPERATORS_H
 
-#include "skills.h"
+#include "skills.hpp"
 #include <iostream>
 #include <type_traits>
 

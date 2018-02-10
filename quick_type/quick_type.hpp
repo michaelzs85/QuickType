@@ -1,4 +1,4 @@
-#include "namedtype.h"
+#include "namedtype.hpp"
 #include <assert.h>
 #include <limits>
 

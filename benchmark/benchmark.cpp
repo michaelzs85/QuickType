@@ -1,4 +1,4 @@
-#include "quick_type.h"
+#include "quick_type.hpp"
 #include <iostream>
 #include <ratio>
 #include <vector>
