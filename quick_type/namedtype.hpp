@@ -58,15 +58,11 @@ template <typename T, class Tag, class Converter, class... Skills> struct NamedT
     }
     T val;
 
+    // conversion operator
     template <typename T2, class Converter2> operator NamedTypeImpl<T2, Tag, Converter2, Skills...>() const
     {
         return NamedTypeImpl<T2, Tag, Converter2, Skills...>{Converter2::convertFrom(Converter::convertTo(val))};
     }
-
-    //  operator T() const
-    //  {
-    //    return val;
-    //  }
 
     struct conversions
     {
@@ -78,6 +74,7 @@ template <typename T, class Tag, class Converter, class... Skills> struct NamedT
         using GetConvertible = NamedTypeImpl<T2, Tag, ComposeConverter<T2, Converter, Converter2>, Skills...>;
     };
 };
+
 
 namespace std
 {

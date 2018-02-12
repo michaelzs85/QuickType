@@ -1,4 +1,4 @@
-# QuickType
+#QuickType
 [![Build Status](https://travis-ci.org/michaelzs85/QuickType.svg?branch=master)](https://travis-ci.org/michaelzs85/QuickType)
 
 A C++ Library to support strong type safety. 
@@ -13,17 +13,17 @@ using MyType = NamedType<int, struct UniqueTagToDistinguishTypes, Addition, Subt
 
 void do_something(MyType x)
 {
-  MyType y{250};
-  std::cout << x+y << "\n"; // works because addition is allowed
-  std::cout << x*y << "\n"; // compile error multiplication not allowed
+    MyType y{250};
+    std::cout << x + y << "\n"; // works because addition is allowed
+    std::cout << x * y << "\n"; // compile error multiplication not allowed
 }
 
 
 int main()
 {
-  MyType k{99};
-  do_something(k);
-  return 0;
+    MyType k{99};
+    do_something(k);
+    return 0;
 }
 ```
 

@@ -4,7 +4,7 @@
 namespace
 {
 
-TEST(OperatorTest, ArithmeticOperators)
+TEST(OperatorTest, ArithmeticOperators) //NOLINT
 {
     int a            = 3857;
     int b            = 10348;
