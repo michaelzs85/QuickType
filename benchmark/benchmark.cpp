@@ -25,49 +25,57 @@ static const std::vector<int> RHS{-457528, -918332, 661356,  647506,  920884,  1
 static void addMeters(benchmark::State& state)
 {
     for (auto _ : state)
+    {
         for (size_t i = 0; i < LHS.size(); ++i)
         {
             int a = LHS[i];
             int b = RHS[i];
             benchmark::DoNotOptimize(((Meters(a) + Meters(b)).val == a + b));
         }
+    }
 }
 BENCHMARK(addMeters);
 
 static void addInts(benchmark::State& state)
 {
     for (auto _ : state)
+    {
         for (size_t i = 0; i < LHS.size(); ++i)
         {
             int a = LHS[i];
             int b = RHS[i];
             benchmark::DoNotOptimize(a + b == a + b);
         }
+    }
 }
 BENCHMARK(addInts);
 
 static void MultiplyMeters(benchmark::State& state)
 {
     for (auto _ : state)
+    {
         for (size_t i = 0; i < LHS.size(); ++i)
         {
             int a = LHS[i];
             int b = RHS[i];
             benchmark::DoNotOptimize(((Meters(a) * b).val == a * b));
         }
+    }
 }
 BENCHMARK(MultiplyMeters);
 
 static void MultiplyInts(benchmark::State& state)
 {
     for (auto _ : state)
+    {
         for (size_t i = 0; i < LHS.size(); ++i)
         {
             int a = LHS[i];
             int b = RHS[i];
             benchmark::DoNotOptimize((a * b == a * b));
         }
+    }
 }
 BENCHMARK(MultiplyInts);
 
-BENCHMARK_MAIN();
+BENCHMARK_MAIN(); // NOLINT
