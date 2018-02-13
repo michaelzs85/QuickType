@@ -6,11 +6,13 @@ services:
  - docker
 
 before_install:
+ - export FOLDER=`pwd`
+ - echo $FOLDER
  - cd docker
  - docker build -t buildimg .
 
  
 script: 
- - cd
- - docker run -t -v `pwd`/michaelzs85/QuickType:/root/QuickType buildimg /root/build_script.sh
+ - echo $FOLDER
+ - docker run -t -v $FOLDER:/root/QuickType buildimg /root/build_script.sh
 
