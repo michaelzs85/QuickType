@@ -3,7 +3,6 @@
 
 #include "conjunction.hpp"
 #include "skills.hpp"
-#include <iostream>
 #include <type_traits>
 
 // Arithmetic operators
