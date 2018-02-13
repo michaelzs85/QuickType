@@ -11,8 +11,11 @@ before_install:
  - cd docker
  - docker build -t buildimg .
 
+compiler:
+ - gcc
+ - clang
  
 script: 
  - echo $FOLDER
- - docker run -t -v $FOLDER:/root/QuickType buildimg /root/build_script.sh
+ - docker run -t -v $FOLDER:/root/QuickType -e CXX=$CXX -e CC=$CC buildimg /root/build_script.sh
 
