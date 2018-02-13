@@ -1,44 +1,16 @@
 language: c++
 
-compiler:
- - gcc
- - clang
-
 sudo: required
 
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-7
+services:
+ - docker
 
-install:
- - pwd
- - CHECKOUTFOLDER=`pwd`
- - cd
- - git clone https://github.com/google/googletest.git gtest
- - cd gtest
- - mkdir build
- - cd build
- - cmake ..
- - cmake --build . -- -j2
- - sudo make install
- - cd 
- - git clone https://github.com/google/benchmark.git gbench
- - cd gbench
- - mkdir build
- - cd build
- - cmake .. -DCMAKE_BUILD_TYPE=RELEASE -DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON
- - cmake --build . -- -j2
- - sudo make install
- - cd
+before_install:
+ - cd docker
+ - docker build -t buildimg .
 
+ 
 script: 
- - cd $CHECKOUTFOLDER
- - cd ..
- - mkdir build
- - cd build
- - CXX=/usr/bin/g++-7 CC=/usr/bin/gcc-7 cmake ../QuickType 
- - cmake --build . -- -j2
+ - cd
+ - docker run -t -v `pwd`/michaelzs85/QuickType:/root/QuickType buildimg /root/build_script.sh
 
