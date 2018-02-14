@@ -91,7 +91,8 @@ struct GreaterThanOrEqualToWithArith {};
 
 // hash
 
-struct Hashable {};
+// std::hash requires operater== to work
+struct Hashable : EqualTo {};
 
 // clang-format on
 

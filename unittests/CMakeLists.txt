@@ -17,3 +17,7 @@ add_test(OperatorConvertTests operators_withconvert_unittest)
 add_executable(operators_witharithmetictypes_unittest "operators_witharithmetictypes_unittest.cpp")
 target_link_libraries(operators_witharithmetictypes_unittest gtest pthread)
 add_test(OperatorArithmeticTests operators_witharithmetictypes_unittest)
+
+add_executable(other_functions_unittest "other_functions_unittest.cpp")
+target_link_libraries(other_functions_unittest gtest pthread)
+add_test(OtherFunctions other_functions_unittest)
