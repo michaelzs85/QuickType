@@ -22,7 +22,7 @@ static const std::vector<int> RHS{-457528, -918332, 661356,  647506,  920884,  1
                                   -882384, 924555,  1686,    240956,  -528640, 126434,  304464,  -606416, 109494,  450268,  632030,  -319918, 902905,
                                   -577641, 664678,  -37507,  816674,  816362,  798672,  488849,  -351808, 692207};
 
-static void addMeters(benchmark::State& state)
+static void addMeters(benchmark::State &state)
 {
     for (auto _ : state)
     {
@@ -36,7 +36,7 @@ static void addMeters(benchmark::State& state)
 }
 BENCHMARK(addMeters);
 
-static void addInts(benchmark::State& state)
+static void addInts(benchmark::State &state)
 {
     for (auto _ : state)
     {
@@ -50,7 +50,7 @@ static void addInts(benchmark::State& state)
 }
 BENCHMARK(addInts);
 
-static void MultiplyMeters(benchmark::State& state)
+static void MultiplyMeters(benchmark::State &state)
 {
     for (auto _ : state)
     {
@@ -64,7 +64,7 @@ static void MultiplyMeters(benchmark::State& state)
 }
 BENCHMARK(MultiplyMeters);
 
-static void MultiplyInts(benchmark::State& state)
+static void MultiplyInts(benchmark::State &state)
 {
     for (auto _ : state)
     {

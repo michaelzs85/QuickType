@@ -8,7 +8,7 @@
 #include <ratio>
 #include <type_traits>
 
-template <typename T1, typename T2, T2 (*from)(T1), T1 (*to)(T2)> struct Convert
+template <typename T1, typename T2, T2 (*from)(T1), T1 (*to)(T2)> struct convert
 {
     static T2 convertFrom(T1 t)
     {
@@ -20,7 +20,7 @@ template <typename T1, typename T2, T2 (*from)(T1), T1 (*to)(T2)> struct Convert
     }
 };
 
-template <typename T1, typename T2, T2 (*f)(T1), T1 (*g)(T1)> struct composeFrom
+template <typename T1, typename T2, T2 (*f)(T1), T1 (*g)(T1)> struct compose_from
 {
     static T2 func(T1 t)
     {
@@ -28,7 +28,7 @@ template <typename T1, typename T2, T2 (*f)(T1), T1 (*g)(T1)> struct composeFrom
     }
 };
 
-template <typename T1, typename T2, T1 (*f)(T1), T1 (*g)(T2)> struct composeTo
+template <typename T1, typename T2, T1 (*f)(T1), T1 (*g)(T2)> struct compose_to
 {
     static T1 func(T2 t)
     {
@@ -36,7 +36,7 @@ template <typename T1, typename T2, T1 (*f)(T1), T1 (*g)(T2)> struct composeTo
     }
 };
 
-template <typename T1, typename T2, typename Ratio> struct ConvertWithRatio
+template <typename T1, typename T2, typename Ratio> struct convert_with_ratio
 {
     static T1 convertFrom(T2 t)
     {
@@ -48,55 +48,55 @@ template <typename T1, typename T2, typename Ratio> struct ConvertWithRatio
     }
 };
 
-template <typename T, class Tag, class Converter, class... Skills> struct NamedTypeImpl : public Skills..., Converter
+template <typename T, class Tag, class Converter, class... Skills> struct quick_type_impl : public Skills..., Converter
 {
-    NamedTypeImpl() : val({})
+    quick_type_impl() : val({})
     {
     }
-    explicit NamedTypeImpl(T val_) : val(val_)
+    explicit quick_type_impl(T val_) : val(val_)
     {
     }
     T val;
 
     // conversion operator
-    template <typename T2, class Converter2> operator NamedTypeImpl<T2, Tag, Converter2, Skills...>() const
+    template <typename T2, class Converter2> operator quick_type_impl<T2, Tag, Converter2, Skills...>() const
     {
-        return NamedTypeImpl<T2, Tag, Converter2, Skills...>{Converter2::convertFrom(Converter::convertTo(val))};
+        return quick_type_impl<T2, Tag, Converter2, Skills...>{Converter2::convertFrom(Converter::convertTo(val))};
     }
 
     struct conversions
     {
         template <typename T2, class Converter1, class Converter2>
-        using ComposeConverter = Convert<T, T2, composeFrom<T, T2, Converter2::convertFrom, Converter1::convertFrom>::func,
-                                         composeTo<T, T2, Converter1::convertTo, Converter2::convertTo>::func>;
+        using ComposeConverter = convert<T, T2, compose_from<T, T2, Converter2::convertFrom, Converter1::convertFrom>::func,
+                                         compose_to<T, T2, Converter1::convertTo, Converter2::convertTo>::func>;
 
         template <typename T2, class Converter2>
-        using GetConvertible = NamedTypeImpl<T2, Tag, ComposeConverter<T2, Converter, Converter2>, Skills...>;
+        using GetConvertible = quick_type_impl<T2, Tag, ComposeConverter<T2, Converter, Converter2>, Skills...>;
     };
 };
 
+template <typename T, class Tag, class... Skills> using quick_type = quick_type_impl<T, Tag, convert_with_ratio<T, T, std::ratio<1>>, Skills...>;
+
+template <class quick_type, typename T2, class Ratio>
+using multiple_of2 = typename quick_type::conversions::template GetConvertible<T2, convert_with_ratio<T2, decltype(quick_type::val), Ratio>>;
+
+template <class quick_type, class Ratio> using multiple_of = multiple_of2<quick_type, decltype(quick_type::val), Ratio>;
+
+// hashing
 
 namespace std
 {
 
-template <typename T, class Tag, class Converter, class... Skills> struct hash<NamedTypeImpl<T, Tag, Converter, Skills...>>
+template <typename T, class Tag, class Converter, class... Skills> struct hash<quick_type_impl<T, Tag, Converter, Skills...>>
 {
-    using NamedType  = NamedTypeImpl<T, Tag, ConvertWithRatio<T, T, std::ratio<1>>, Skills...>;
-    using IsHashable = typename std::enable_if<std::is_base_of<Hashable, NamedType>::value, std::true_type>::type;
+    using quick_type = quick_type_impl<T, Tag, convert_with_ratio<T, T, std::ratio<1>>, Skills...>;
+    using IsHashable = typename std::enable_if<std::is_base_of<Hashable, quick_type>::value, std::true_type>::type;
 
-    size_t operator()(NamedType const& t) const noexcept
+    size_t operator()(quick_type const &t) const noexcept
     {
         return std::hash<decltype(t.val)>()(t.val);
     }
 };
 }
-
-template <typename T, class Tag, class... Skills> using NamedType = NamedTypeImpl<T, Tag, ConvertWithRatio<T, T, std::ratio<1>>, Skills...>;
-
-template <class NamedType, typename T2, class Ratio>
-using MultipleOf2 = typename NamedType::conversions::template GetConvertible<T2, ConvertWithRatio<T2, decltype(NamedType::val), Ratio>>;
-
-template <class NamedType, class Ratio>
-using MultipleOf = MultipleOf2<NamedType, decltype(NamedType::val), Ratio>;
 
 #endif // NAMEDTYPE_H

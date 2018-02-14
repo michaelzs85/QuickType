@@ -4,12 +4,12 @@
 TEST(ArithmeticOperatorsTest, ThatOneTestCase)
 {
     using T =
-        NamedType<int, struct TheTag, AdditionWithArith, SubtractionWithArith, MultiplicationWithArith, DivisionWithArith, ModuloWithArith,
-                  BitwiseAndWithArith, BitwiseOrWithArith, BitwiseXorWithArith, BitwiseLeftShiftWithArith, BitwiseRightShiftWithArith,
-                  AdditionAssignmentWithArith, SubtractionAssignmentWithArith, MultiplicationAssignmentWithArith, DivisionAssignmentWithArith,
-                  ModuloAssignmentWithArith, BitwiseAndAssignmentWithArith, BitwiseOrAssignmentWithArith, BitwiseXorAssignmentWithArith,
-                  BitwiseLeftShiftAssignmentWithArith, BitwiseRightShiftAssignmentWithArith, AndWithArith, InclusiveOrWithArith, EqualToWithArith,
-                  NotEqualToWithArith, LessThanWithArith, GreaterThanWithArith, LessThanOrEqualToWithArith, GreaterThanOrEqualToWithArith>;
+        quick_type<int, struct TheTag, AdditionWithArith, SubtractionWithArith, MultiplicationWithArith, DivisionWithArith, ModuloWithArith,
+                   BitwiseAndWithArith, BitwiseOrWithArith, BitwiseXorWithArith, BitwiseLeftShiftWithArith, BitwiseRightShiftWithArith,
+                   AdditionAssignmentWithArith, SubtractionAssignmentWithArith, MultiplicationAssignmentWithArith, DivisionAssignmentWithArith,
+                   ModuloAssignmentWithArith, BitwiseAndAssignmentWithArith, BitwiseOrAssignmentWithArith, BitwiseXorAssignmentWithArith,
+                   BitwiseLeftShiftAssignmentWithArith, BitwiseRightShiftAssignmentWithArith, AndWithArith, InclusiveOrWithArith, EqualToWithArith,
+                   NotEqualToWithArith, LessThanWithArith, GreaterThanWithArith, LessThanOrEqualToWithArith, GreaterThanOrEqualToWithArith>;
     int i = 2344;
     int j = 5692;
     T   k{i};

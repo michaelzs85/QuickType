@@ -3,7 +3,8 @@
 
 #include <type_traits>
 
-// conjunction function taken from http://en.cppreference.com/w/cpp/types/conjunction
+// conjunction function taken from
+// http://en.cppreference.com/w/cpp/types/conjunction
 // replace with std::conjunction once C++17 is available
 template <class...> struct conjunction : std::true_type
 {
