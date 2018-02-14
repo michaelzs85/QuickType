@@ -96,4 +96,7 @@ template <typename T, class Tag, class... Skills> using NamedType = NamedTypeImp
 template <class NamedType, typename T2, class Ratio>
 using MultipleOf2 = typename NamedType::conversions::template GetConvertible<T2, ConvertWithRatio<T2, decltype(NamedType::val), Ratio>>;
 
+template <class NamedType, class Ratio>
+using MultipleOf = MultipleOf2<NamedType, decltype(NamedType::val), Ratio>;
+
 #endif // NAMEDTYPE_H
