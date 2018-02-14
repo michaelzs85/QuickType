@@ -1,4 +1,4 @@
-#include "namedtype.hpp"
+#include "quick_type.hpp"
 #include <gtest/gtest.h>
 
 namespace
