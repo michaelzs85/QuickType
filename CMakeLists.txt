@@ -11,6 +11,7 @@ SET( CMAKE_CXX_FLAGS "-O2 -Wall" )
 project(quick_type)
 add_subdirectory(unittests)
 add_subdirectory(benchmark)
+add_subdirectory(examples)
 
 
 
