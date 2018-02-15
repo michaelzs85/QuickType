@@ -8,7 +8,7 @@ SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 SET( CMAKE_CXX_FLAGS "-O2 -Wall" )
 #SET( CMAKE_EXE_LINKER_FLAGS "--coverage")
 
-project(strong)
+project(quick_type)
 add_subdirectory(unittests)
 add_subdirectory(benchmark)
 
