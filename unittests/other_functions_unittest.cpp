@@ -1,10 +1,10 @@
 #include "quick_type.hpp"
 #include <gtest/gtest.h>
 #include <iostream>
-#include <ratio>
-#include <unordered_set>
-#include <set>
 #include <iterator>
+#include <ratio>
+#include <set>
+#include <unordered_set>
 
 TEST(OtherFunctionsTest, hashTest)
 {
@@ -21,7 +21,7 @@ TEST(OtherFunctionsTest, hashTest)
     ASSERT_EQ(the_set.count(H{0}), 0);
 
     std::set<H> ordered_set;
-    std::pair<std::set<H>::iterator, bool > ret;
+    std::pair<std::set<H>::iterator, bool> ret;
     ret = ordered_set.emplace(45);
     ASSERT_EQ(true, ret.second);
     ret = ordered_set.emplace(34);
