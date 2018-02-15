@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <limits>
 
-using Meters = quick_type<int, struct MetersTag, Addition, Subtraction, Printable, UnaryMinus, MultiplicationWithArith, DivisionAssignmentWithArith>;
+using Meters = quick_type<int, struct MetersTag, Hashable, Addition, Subtraction, Printable, UnaryMinus, MultiplicationWithArith, DivisionAssignmentWithArith>;
 
 Meters operator"" _m(unsigned long long int x)
 {

@@ -54,6 +54,8 @@ struct GreaterThan {};
 struct LessThanOrEqualTo {};
 struct GreaterThanOrEqualTo {};
 
+struct Comparable : EqualTo, NotEqualTo, LessThan, GreaterThan, LessThanOrEqualTo, GreaterThanOrEqualTo {};
+
 // other
 
 struct Printable {};
@@ -92,7 +94,7 @@ struct GreaterThanOrEqualToWithArith {};
 // hash
 
 // std::hash requires operater== to work
-struct Hashable : EqualTo {};
+struct Hashable : Comparable {};
 
 // clang-format on
 

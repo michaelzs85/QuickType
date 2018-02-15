@@ -3,6 +3,8 @@
 #include <iostream>
 #include <ratio>
 #include <unordered_set>
+#include <set>
+#include <iterator>
 
 TEST(OtherFunctionsTest, hashTest)
 {
@@ -17,6 +19,13 @@ TEST(OtherFunctionsTest, hashTest)
     the_set.emplace(45);
     ASSERT_EQ(the_set.count(H{45}), 1);
     ASSERT_EQ(the_set.count(H{0}), 0);
+
+    std::set<H> ordered_set;
+    std::pair<std::set<H>::iterator, bool > ret;
+    ret = ordered_set.emplace(45);
+    ASSERT_EQ(true, ret.second);
+    ret = ordered_set.emplace(34);
+    ASSERT_EQ(true, ret.second);
 }
 
 int main(int argc, char **argv)
