@@ -3,13 +3,13 @@
 
 A C++ Library to support strong type safety. 
 
-The idea is to quickly and easily create your own types. 
+Easily define your own interface types.
 
 ```
-#include "strong_type.h"
+#include "quick_type.h"
 #include <iostream>
 
-using MyType = NamedType<int, struct UniqueTagToDistinguishTypes, Addition, Subtraction, Printable>;
+using MyType = quick_type<int, struct UniqueTagToDistinguishTypes, Addition, Subtraction, Printable>;
 
 void do_something(MyType x)
 {
