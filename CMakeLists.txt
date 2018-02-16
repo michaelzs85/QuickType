@@ -13,6 +13,10 @@ add_subdirectory(unittests)
 add_subdirectory(benchmark)
 add_subdirectory(examples)
 
-
+find_program(DOXY doxygen)
+find_program(DOT dot)
+if(EXISTS ${DOXY} AND EXISTS ${DOT})
+  add_custom_target(doxygen doxygen ${CMAKE_SOURCE_DIR}/doxy_cfg)
+endif(EXISTS ${DOXY} AND EXISTS ${DOT})
 
 
