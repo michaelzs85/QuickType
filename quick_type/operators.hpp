@@ -1,6 +1,9 @@
 #ifndef OPERATORS_H
 #define OPERATORS_H
 
+/*! \file operators.hpp
+ */
+
 #include "skills.hpp"
 #include <iostream>
 #include <type_traits>

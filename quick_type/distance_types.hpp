@@ -1,3 +1,9 @@
+#ifndef DISTANCE_TYPES_HPP
+#define DISTANCE_TYPES_HPP
+
+/*! \file distance_types.hpp
+ */
+
 #include "quick_type.hpp"
 #include <assert.h>
 #include <limits>
@@ -18,5 +24,7 @@ Kilometers operator"" _km(long double x)
     return Kilometers{static_cast<double>(x)};
 }
 
-using Feet        = multiple_of<Meters, std::ratio<1000000000000, 3280833333334>>;
+using Feet        = multiple_of<Meters, std::ratio<1000000000000ull, 3280833333334ull>>;
 using Flightlevel = multiple_of2<Feet, double, std::ratio<100>>;
+
+#endif // DISTANCE_TYPES_HPP

@@ -1,6 +1,10 @@
 #ifndef OPERATORS_WITHARITHMETICTYPES_H
 #define OPERATORS_WITHARITHMETICTYPES_H
 
+/*! \file operators_witharithmetictypes.hpp
+ */
+
+
 #include "conjunction.hpp"
 #include "skills.hpp"
 #include <iostream>

@@ -1,6 +1,9 @@
 #ifndef NAMEDTYPE_H
 #define NAMEDTYPE_H
 
+/*! \file quick_type.hpp
+ */
+
 #include "convert.hpp"
 #include "operators.hpp"
 #include "operators_witharithmetictypes.hpp"

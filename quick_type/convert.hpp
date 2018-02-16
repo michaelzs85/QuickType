@@ -1,6 +1,9 @@
 #ifndef CONVERT_HPP
 #define CONVERT_HPP
 
+/*! \file convert.hpp
+ */
+
 template <typename T1, typename T2, T2 (*from)(T1), T1 (*to)(T2)> struct convert
 {
     static T2 convertFrom(T1 t)

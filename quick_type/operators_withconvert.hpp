@@ -1,6 +1,9 @@
 #ifndef OPERATORS_WITHCONVERT_H
 #define OPERATORS_WITHCONVERT_H
 
+/*! \file operators_withconvert.hpp
+ */
+
 #include "conjunction.hpp"
 #include "skills.hpp"
 #include <type_traits>

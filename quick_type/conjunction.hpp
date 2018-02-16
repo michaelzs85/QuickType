@@ -1,6 +1,9 @@
 #ifndef CONJUNCTION_H
 #define CONJUNCTION_H
 
+/*! \file conjunction.hpp
+ */
+
 #include <type_traits>
 
 // conjunction function taken from

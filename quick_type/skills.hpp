@@ -1,6 +1,10 @@
 #ifndef SKILLS_H
 #define SKILLS_H
 
+/*! \file skills.hpp
+ */
+
+
 // clang-format off
 
 // arithmetic
