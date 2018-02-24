@@ -44,4 +44,16 @@ template <typename T1, typename T2, typename Ratio> struct convert_with_ratio
     }
 };
 
+template <typename T1, typename T2, typename Ratio, typename Offset> struct convert_with_offset
+{
+    static T1 convertFrom(T2 t)
+    {
+        return (static_cast<T1>(t) * Ratio::den / Ratio::num) + (static_cast<T1>(Offset::num) / Offset::den);
+    }
+    static T2 convertTo(T1 t)
+    {
+        return static_cast<T2>((t - (static_cast<T2>(Offset::num) / Offset::den)) * Ratio::num / Ratio::den);
+    }
+};
+
 #endif // CONVERT_HPP
