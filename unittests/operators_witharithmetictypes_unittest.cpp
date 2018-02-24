@@ -1,7 +1,7 @@
 #include "quick_type.hpp"
 #include <gtest/gtest.h>
 
-TEST(ArithmeticOperatorsTest, ThatOneTestCase)
+TEST(ArithmeticOperators, OperationsWithNormalArtihmeticTypesShouldResultInTheSameValuesAsApplyingTheOperationToTheUnderlyingTypeDirectly)
 {
     using T =
         quick_type<int, struct TheTag, AdditionWithArith, SubtractionWithArith, MultiplicationWithArith, DivisionWithArith, ModuloWithArith,

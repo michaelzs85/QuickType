@@ -4,7 +4,7 @@
 namespace
 {
 
-TEST(OperatorTest, ArithmeticOperators) // NOLINT
+TEST(Operator, ArithmeticOperationsOnQuickTypesShouldBeTheSameAsTheOperationsOnTheUnderlyingTypes) // NOLINT
 {
     int a            = 3857;
     int b            = 10348;
@@ -36,7 +36,7 @@ TEST(OperatorTest, ArithmeticOperators) // NOLINT
     ASSERT_EQ(a >> 3, (BitwiseRightShiftT{a} >> BitwiseRightShiftT{3}).val);
 }
 
-TEST(OperatorTest, LogicalOperators)
+TEST(Operator, LogicalOperatorsOnQuickTypesShouldResultInTheSameValuesAsLogicalOperatorsOnTheUnterlyingValues)
 {
     bool a          = true;
     bool b          = false;
@@ -48,7 +48,7 @@ TEST(OperatorTest, LogicalOperators)
     ASSERT_EQ(a || b, InclusiveOrT{a} || InclusiveOrT{b});
 }
 
-TEST(OperatorTest, ComparisonOperators)
+TEST(Operator, ComparisonOperatorsOnQuickTypesShouldResultinTheSameValuesasLogicalOperatorsOnTheUnderlyingValues)
 {
     int a          = 23850;
     int b          = 14592;
@@ -72,7 +72,7 @@ TEST(OperatorTest, ComparisonOperators)
     ASSERT_EQ(b >= a, GreaterThanOrEqualToT{b} >= GreaterThanOrEqualToT{a});
 }
 
-TEST(OperatorTest, IncrementDecrementOperators)
+TEST(Operator, IncrementAndDecrementOperatorsOnQuickTypesShouldHaveTheSameEffectAsTheSameOpeatorsOnTheUnderlyingValues)
 {
     using Type = quick_type<int, struct TypeTag, PreIncrement, PreDecrement, PostIncrement, PostDecrement>;
     int  v     = 35743943;
@@ -91,7 +91,7 @@ TEST(OperatorTest, IncrementDecrementOperators)
     ASSERT_EQ(v, k.val);
 }
 
-TEST(OperatorTest, AssignmentOperators)
+TEST(Operator, AssignmentsOnQuickTypesShouldHaveTheSameEffectAsAssignmentsOnTheUnderlyingValues)
 {
     using Type =
         quick_type<int, struct TypeTag, AdditionAssignment, SubtractionAssignment, MultiplicationAssignment, DivisionAssignment, ModuloAssignment,

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <ratio>
 
-TEST(ConvertOperatorTest, TheOneAndAllEncompassingTest)
+TEST(ConvertOperator, QuickTypesDefinedAsMultiplesShouldBeAutomaticallyConvertedWhenApplyingOperations)
 {
     using T = quick_type<int, struct Tag, Addition, Subtraction, Multiplication, Division, Modulo, BitwiseAnd, BitwiseOr, BitwiseXor,
                          AdditionAssignment, SubtractionAssignment, MultiplicationAssignment, DivisionAssignment, ModuloAssignment,
