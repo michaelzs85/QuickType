@@ -4,7 +4,6 @@
 /*! \file skills.hpp
  */
 
-
 // clang-format off
 
 // arithmetic

@@ -9,16 +9,18 @@
  * parameter does at the call site and let the compiler check that the correct parameters are provided.
  */
 
-constexpr int rows    = 3;
-constexpr int columns = 4;
-static int ARR[rows][columns] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+constexpr int rows               = 3;
+constexpr int columns            = 4;
+static int    ARR[rows][columns] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
 //!< Create an array with some data. There is no deeper meaning to this stuff, it's simply a data structure to read some data from.
 
 /*! Definition of a new type called 'Row'. The first template parameter defines the unterlying type; the second parameter is an in place declared
- * struct to differentiate between quick_types; the third possible following parameters enable the functionalities of the declared type (see skills.h).*/
+ * struct to differentiate between quick_types; the third possible following parameters enable the functionalities of the declared type (see
+ * skills.h).*/
 using Row = quick_type<int, struct RowTag, Comparable, Printable>;
 /*! Definition of a new type called 'Column'. The first template parameter defines the unterlying type; the second parameter is an in place declared
- * struct to differentiate between quick_types; the third and possible following parameters enable the functionalities of the declared type (see skills.h). */
+ * struct to differentiate between quick_types; the third and possible following parameters enable the functionalities of the declared type (see
+ * skills.h). */
 using Column = quick_type<int, struct ColumnTag, Comparable, Printable>;
 
 int main();

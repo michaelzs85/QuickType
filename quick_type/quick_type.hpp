@@ -39,16 +39,16 @@ template <typename T, class Tag, class Converter, class... Skills> struct quick_
     };
 };
 
-template <typename T, class Tag, class... Skills> using quick_type = quick_type_impl<T, Tag, convert_with_offset<T, T, std::ratio<1>, std::ratio<0>>, Skills...>;
+template <typename T, class Tag, class... Skills>
+using quick_type = quick_type_impl<T, Tag, convert_with_offset<T, T, std::ratio<1>, std::ratio<0>>, Skills...>;
 
 template <class quick_type, typename T2, class Ratio, typename Offset>
-using multiple_with_offset2 = typename quick_type::conversions::template GetConvertible<T2, convert_with_offset<T2, decltype(quick_type::val), Ratio, Offset>>;
+using multiple_with_offset2 =
+    typename quick_type::conversions::template GetConvertible<T2, convert_with_offset<T2, decltype(quick_type::val), Ratio, Offset>>;
 
-template <class quick_type, typename T2, class Ratio>
-using multiple_of2 = multiple_with_offset2<quick_type, T2, Ratio, std::ratio<0>>;
+template <class quick_type, typename T2, class Ratio> using multiple_of2 = multiple_with_offset2<quick_type, T2, Ratio, std::ratio<0>>;
 
 template <class quick_type, class Ratio> using multiple_of = multiple_of2<quick_type, decltype(quick_type::val), Ratio>;
-
 
 // hashing
 namespace std

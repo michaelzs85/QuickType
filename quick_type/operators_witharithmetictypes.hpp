@@ -4,7 +4,6 @@
 /*! \file operators_witharithmetictypes.hpp
  */
 
-
 #include "conjunction.hpp"
 #include "skills.hpp"
 #include <iostream>
